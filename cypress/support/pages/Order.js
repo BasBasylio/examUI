@@ -1,23 +1,10 @@
-import { faker } from '@faker-js/faker';                              
-import user from '../fixtures/user.json';  
-import accountCreatePage from '../support/pages/AccountCreatePage';
+class LoginPage{
+    visit() {
+        cy.visit('/#/login');
+        cy.get('[aria-label="Close Welcome Banner"]').click();
 
-user.email = faker.internet.email();
-user.password = faker.internet.password({ length: 8, prefix: '!Qq1' });
 
-describe('login with user', () => {
-  it('ok', () => {
-    
-    accountCreatePage.registerVisit()
-  
-    accountCreatePage.registerGetEmailField().type(user.email)
-    accountCreatePage.registerGetPasswordField().type(user.password)
-    accountCreatePage.registerGetPasswordConfirmField().type(user.password)
-    
-    accountCreatePage.registerGetQuestion();
-    accountCreatePage.registerGetSubmitRegistrationFormButton();
- 
-      cy.get('#email').type(user.email);
+cy.get('#email').type(user.email);
       cy.get('#password').type(user.password);
       cy.get('#loginButton').click();
       cy.get('.ng-star-inserted').should('contain', 'All Products')
@@ -51,21 +38,18 @@ describe('login with user', () => {
       cy.log('submitButton')
       cy.get('#submitButton').click()
   
-      cy.log('выбор адреса')
-      cy.get('.mat-radio-inner-circle.mat-radio-inner-circle').click();
-
-      cy.log('выбор адреса                !!!')
-
-      cy.log('submitButton')
-      cy.get('#card > app-address > mat-card > button > span.mat-button-wrapper > span').click();
      
-      cy.log('delivery speed')
-      cy.get('#mat-radio-41').click()
-
+      cy.get('.mat-radio-inner-circle.mat-radio-inner-circle').click();
+  
       cy.log('submitButton')
-      cy.get('app-delivery-method button.mat-focus-indicator.btn.nextButton.mat-button.mat-raised-button.mat-button-base.mat-primary mat-icon+span').click();
-      
-      cy.log('delivery speed')
+      cy.get('[class="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"]').click();
+  
+      cy.log('submitButton')
+      cy.get('body > app-root > div > mat-sidenav-container > mat-sidenav-content > app-delivery-method > mat-card > div:nth-child(4) > mat-table > mat-row:nth-child(2) > mat-cell.mat-cell.cdk-cell.cdk-column-Selection.mat-column-Selection.ng-star-inserted').click();
+  
+      cy.log('submitButton')
+      cy.get('body > app-root > div > mat-sidenav-container > mat-sidenav-content > app-delivery-method > mat-card > div:nth-child(5) > button.mat-focus-indicator.btn.nextButton.mat-button.mat-raised-button.mat-button-base.mat-primary > span.mat-button-wrapper > span').click();
+  
       cy.get('#mat-expansion-panel-header-0').click()
       
       cy.log('name')
@@ -81,20 +65,16 @@ describe('login with user', () => {
       cy.get('#mat-input-17').select('2083')
      
   
-      cy.get('#submitButton  span.mat-button-wrapper').click()
+      cy.get('#submitButton > span.mat-button-wrapper').click()
   
-      cy.get('#mat-radio-44').click();
+      cy.get('[class="mat-radio-input"][id="mat-radio-44-input"]').click();
   
-      cy.get('mat-card button+button mat-icon+span').click();
+      cy.get('body > app-root > div > mat-sidenav-container > mat-sidenav-content > app-payment > mat-card > div > div:nth-child(9) > button.mat-focus-indicator.btn.nextButton.mat-button.mat-raised-button.mat-button-base.mat-primary > span.mat-button-wrapper > span').click();
   
-      cy.get('#checkoutButton').click()
+      cy.get('[color="primary"][aria-label="Complete your purchase"]').click()
       
       cy.get('.confirmation').should('contain', 'Thank you for your purchase!')
- 
- 
- 
- 
- 
-    })
-})
- 
+
+    }
+}
+export default new LoginPage();  
