@@ -18,20 +18,20 @@ class AccountCreatePage{
 
     registerGetQuestion() {
         cy.get('#mat-select-value-1').click();
-        cy.get('#mat-option-4').click()
-        cy.get('#securityAnswerControl').type('bas');
+        cy.get('#mat-option-4').click();
+        cy.get('#securityAnswerControl').type('user.city'); //чому не можна вивести з файлу юзер
     }
 
     registerGetSubmitRegistrationFormButton() {
         cy.get('#registerButton').click();
     }
 
-    registerGetRegisterUserWithValidCredentials(user) {
+    registerUserWithValidCredentials(user) {
         this.registerVisit()
   
-        this.registerGetEmailField().type(user.email)
-        this.registerGetPasswordField().type(user.password)
-        this.registerGetPasswordConfirmField().type(user.password)
+        this.registerGetEmailField().type(user.email);
+        this.registerGetPasswordField().type(user.password + user.passwordPref);
+        this.registerGetPasswordConfirmField().type(user.password + user.passwordPref);
         
         this.registerGetQuestion();
         this.registerGetSubmitRegistrationFormButton();

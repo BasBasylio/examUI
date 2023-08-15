@@ -1,20 +1,27 @@
-class AccountLoginPage {
+///<reference types="cypress"/>
+class AccountLoginPage  {
     loginVisit() {
         cy.visit('https://juice-shop-sanitarskyi.herokuapp.com/#/login');
         cy.get('[aria-label="Close Welcome Banner"]').click();
     }
 
     loginEmail() {
-        cy.get('#email').type(user.email);
+        return cy.get('#email');//.type(user.email)
     }
 
     loginPass() {
-        cy.get('#password').type('BasBasBas!1');
+        return cy.get('#password');//.type('BasBasBas!1');
     }
 
     loginButton() {
-        cy.get('#loginButton').click();
+        return  cy.get('#loginButton').click();
     
+    }
+
+    loginAccount(user){
+        this.loginEmail().type(user.email);
+        this.loginPass().type(user.password);;
+        this.loginButton().click();
     }
 }
 export default new AccountLoginPage();

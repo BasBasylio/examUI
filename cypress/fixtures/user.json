@@ -1,11 +1,13 @@
 {
   "email": "Bas@email.com",
   "password": "BasBasBas!1",
+  "passwordPref": "!Qq1",
   "country": "UKR",
   "name": "Bas",
   "mobileNumber": "123456789",
   "zipCode": "01234",
   "address": "Fake str. 10",
   "city": "Kyiv",
-  "state": "dc"
+  "state": "dc",
+  "card number": "1234123412341234"
 }

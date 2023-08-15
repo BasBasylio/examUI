@@ -6,16 +6,16 @@ import accountLoginPage from '../support/pages/AccountLoginPage';
 import accountCreatePage from '../support/pages/AccountCreatePage';
 
 user.email = faker.internet.email();
-user.password = faker.internet.password({ length: 8, prefix: '!Qq1' });
+user.password = faker.internet.password({ length: 4, prefix: '!Qq1' });
 
 
 
 export function registerUser(user) {
     accountCreatePage.registerVisit()
   
-    accountCreatePage.registerGetEmailField().type(user.email)
-    accountCreatePage.registerGetPasswordField().type(user.password)
-    accountCreatePage.registerGetPasswordConfirmField().type(user.password)
+    accountCreatePage.registerGetEmailField().type(user.email);
+    accountCreatePage.registerGetPasswordField().type(user.password + user.passwordPref);
+    accountCreatePage.registerGetPasswordConfirmField().type(user.password + user.passwordPref);
     
     accountCreatePage.registerGetQuestion();
     accountCreatePage.registerGetSubmitRegistrationFormButton();
@@ -30,7 +30,7 @@ export function login(user) {
 
 }
 
-export function loginViaUI(user) {
+/*export function loginViaUI(user) {
     loginPage.visit();
 
     cy.get('[aria-label="Close Welcome Banner"]').click();
@@ -69,7 +69,7 @@ export function findProductByName(productName) {                             //Ð
         }
 })
 
-}
+}*/
 
 
 
