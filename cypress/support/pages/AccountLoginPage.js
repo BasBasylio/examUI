@@ -6,11 +6,11 @@ class AccountLoginPage  {
     }
 
     loginEmail() {
-        return cy.get('#email');//.type(user.email)
+        return cy.get('#email');
     }
 
     loginPass() {
-        return cy.get('#password');//.type('BasBasBas!1');
+        return cy.get('#password');
     }
 
     loginButton() {
@@ -20,8 +20,8 @@ class AccountLoginPage  {
 
     loginAccount(user){
         this.loginEmail().type(user.email);
-        this.loginPass().type(user.password);;
-        this.loginButton().click();
+        this.loginPass().type(user.password);
+        this.loginButton();
     }
 }
 export default new AccountLoginPage();

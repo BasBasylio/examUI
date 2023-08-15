@@ -6,7 +6,7 @@ import accountLoginPage from '../support/pages/AccountLoginPage';
 import accountCreatePage from '../support/pages/AccountCreatePage';
 
 user.email = faker.internet.email();
-user.password = faker.internet.password({ length: 4, prefix: '!Qq1' });
+user.password = faker.internet.password({ length: 8, prefix: '!Qq1' });
 
 
 
@@ -14,8 +14,8 @@ export function registerUser(user) {
     accountCreatePage.registerVisit()
   
     accountCreatePage.registerGetEmailField().type(user.email);
-    accountCreatePage.registerGetPasswordField().type(user.password + user.passwordPref);
-    accountCreatePage.registerGetPasswordConfirmField().type(user.password + user.passwordPref);
+    accountCreatePage.registerGetPasswordField().type(user.password);
+    accountCreatePage.registerGetPasswordConfirmField().type(user.password);
     
     accountCreatePage.registerGetQuestion();
     accountCreatePage.registerGetSubmitRegistrationFormButton();
@@ -23,10 +23,10 @@ export function registerUser(user) {
 }
 
 export function login(user) {
-        accountLoginPage.visit();
-        accountLoginPage.loginEmail();
-        accountLoginPage.loginPass();
-        accountLoginPage.loginButton();
+        accountLoginPage.loginEmail().type(user.email);
+        accountLoginPage.loginPass().type(user.password);
+        accountLoginPage.loginButton().click();
+
 
 }
 

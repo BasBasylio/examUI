@@ -29,12 +29,12 @@ class AccountCreatePage{
     registerUserWithValidCredentials(user) {
         this.registerVisit()
   
-        this.registerGetEmailField().type(user.email);
-        this.registerGetPasswordField().type(user.password + user.passwordPref);
-        this.registerGetPasswordConfirmField().type(user.password + user.passwordPref);
-        
+        this.registerGetEmailField().type(user.email)
+        this.registerGetPasswordField().type(user.password)
+        this.registerGetPasswordConfirmField().type(user.password)
         this.registerGetQuestion();
         this.registerGetSubmitRegistrationFormButton();
+        
     }
 
 

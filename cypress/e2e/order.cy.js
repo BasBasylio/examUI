@@ -4,7 +4,7 @@ import accountCreatePage from '../support/pages/AccountCreatePage';
 import accountLoginPage from '../support/pages/AccountLoginPage';
 
 user.email = faker.internet.email();
-user.password = faker.internet.password({ length: 4, prefix: '!Qq1' });
+user.password = faker.internet.password({ length: 8, prefix: '!Qq1' });
 user.country = faker.location.country();
 user.name = faker.person.firstName();
 user.mobileNumber = faker.phone.number('#######');
