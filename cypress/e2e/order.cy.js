@@ -7,30 +7,24 @@ user.email = faker.internet.email();
 user.password = faker.internet.password({ length: 8, prefix: '!Qq1' });
 user.country = faker.location.country();
 user.name = faker.person.firstName();
-user.mobileNumber = faker.phone.number('#######');
-user.zipCode = faker.location.zipCode({ length: 5 });
+user.mobileNumber = faker.number.bigInt({ min: 10000000, max: 99999999 }).toString()
+user.zipCode = faker.location.zipCode();
 user.address = faker.location.streetAddress();
 user.city = faker.location.city();
 user.state = faker.location.state();
-user.cardNumber = faker.finance.creditCardNumber({ length: 12 });
+user.cardNumber = faker.finance.creditCardNumber('################');
 
-describe('login with user', () => {
-  it('ok', () => {
+describe('order with new user', () => {
+  it.only('ok', () => {
     
-    accountCreatePage.registerVisit()
+    accountCreatePage.registerUserWithValidCredentials(user);
   
-    accountCreatePage.registerGetEmailField().type(user.email)
-    accountCreatePage.registerGetPasswordField().type(user.password)
-    accountCreatePage.registerGetPasswordConfirmField().type(user.password)
-    
-    accountCreatePage.registerGetQuestion();
-    accountCreatePage.registerGetSubmitRegistrationFormButton();
- 
-    accountLoginPage.loginEmail().type(user.email);
-    accountLoginPage.loginPass().type(user.password + user.passwordPref);
-    accountLoginPage.loginButton();
+    accountLoginPage.loginAccount(user);
+
+    cy.get('.ng-star-inserted').should('contain', 'All Products');
+
       cy.get('.ng-star-inserted').should('contain', 'All Products')
-      cy.get('body > app-root > div > mat-sidenav-container > mat-sidenav-content > app-search-result > div > div > div.ng-star-inserted > mat-grid-list > div > mat-grid-tile:nth-child(1) > div > mat-card > div:nth-child(2) > button').click();
+      cy.get('.mat-grid-tile.ng-star-inserted').first().find('button').click();
       cy.contains('.mat-button-wrapper', ' Your Basket').click();
       cy.get('#checkoutButton').click();
 
@@ -99,7 +93,7 @@ describe('login with user', () => {
  
     })
 
-    it.only('more then 5 items', () => {
+    it('more then 5 items', () => {
     
         accountCreatePage.registerVisit()
   
@@ -116,15 +110,12 @@ describe('login with user', () => {
      
           cy.get('body > app-root > div > mat-sidenav-container > mat-sidenav-content > app-search-result > div > div > div.ng-star-inserted > mat-grid-list > div > mat-grid-tile:nth-child(1) > div > mat-card > div:nth-child(2) > button').click();
           cy.contains('.mat-button-wrapper', ' Your Basket').click();
-          cy.get('.svg-inline--fa.fa-plus-square.fa-w-14').click();
-          cy.get('.svg-inline--fa.fa-plus-square.fa-w-14').click();
-          cy.get('.svg-inline--fa.fa-plus-square.fa-w-14').click();
-          cy.get('.svg-inline--fa.fa-plus-square.fa-w-14').click();
-          cy.get('.svg-inline--fa.fa-plus-square.fa-w-14').click();
-          cy.get('.svg-inline--fa.fa-plus-square.fa-w-14').click();
-          cy.get('.svg-inline--fa.fa-plus-square.fa-w-14').click();
-          
-          cy.get('.mat-simple-snack-bar-content').should('containe','You can order only up to 5 items of this product.');
+
+          for(let i=0; i<6; i++){ 
+            cy.get('.svg-inline--fa.fa-plus-square.fa-w-14').click();
+               }
+
+          cy.get('.mat-simple-snack-bar-content').should('contain','You can order only up to 5 items of this product.');
     
          
         })

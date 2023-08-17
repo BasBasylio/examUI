@@ -8,5 +8,5 @@
   "address": "Fake str. 10",
   "city": "Kyiv",
   "state": "dc",
-  "card number": "1234123412341234"
+  "cardNumber": "1234123412341234"
 }

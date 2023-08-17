@@ -6,8 +6,7 @@ import accountLoginPage from '../support/pages/AccountLoginPage';
 user.email = faker.internet.email();
 user.password = faker.internet.password({ length: 8, prefix: '!Qq1' });
 
-describe('register user', () => {
-  it('ok', () => {
+  it('register user', () => {
     
     accountCreatePage.registerUserWithValidCredentials(user);
   
@@ -16,10 +15,10 @@ describe('register user', () => {
     cy.get('.ng-star-inserted').should('contain', 'All Products');
 
   })
-})
 
-describe('register user with bad email', () => {
-  it('bad email', () => {
+
+
+  it('register user with bad emai', () => {
     accountCreatePage.registerVisit();
     accountCreatePage.registerGetEmailField().type(user.email[1]);
     accountCreatePage.registerGetPasswordField().type(user.password);
@@ -28,7 +27,7 @@ describe('register user with bad email', () => {
     cy.get('.mat-error.ng-tns-c119-7.ng-star-inserted').should('contain', 'Email address is not valid.');
 
   })
-})
+
 
 describe('register user with bad pass', () => { 
   it('bad pass conf', () => {
