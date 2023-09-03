@@ -29,7 +29,6 @@ user.password = faker.internet.password({ length: 8, prefix: '!Qq1' });
   })
 
 
-describe('register user with bad pass', () => { 
   it('bad pass conf', () => {
     accountCreatePage.registerVisit();
     accountCreatePage.registerGetEmailField().type(user.email);
@@ -39,4 +38,4 @@ describe('register user with bad pass', () => {
     cy.get('.mat-error.ng-tns-c119-8.ng-star-inserted').should('contain', 'Password must be 5-40 characters long. ');
 
   })
-})
+

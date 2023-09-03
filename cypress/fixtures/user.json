@@ -8,5 +8,8 @@
   "address": "Fake str. 10",
   "city": "Kyiv",
   "state": "dc",
-  "cardNumber": "1234123412341234"
+  "cardNumber": "1234123412341234",
+  "comment": "123",
+  "captcha": "1"
+
 }

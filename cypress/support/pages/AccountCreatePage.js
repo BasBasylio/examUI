@@ -1,7 +1,7 @@
 class AccountCreatePage{
     registerVisit() {
         cy.visit('/#/register')
-        cy.get('[aria-label="Close Welcome Banner"]').click();
+        cy.get('[aria-label="Close Welcome Banner"]').click({timeout: 2000});
     }
 
     registerGetEmailField() {
@@ -19,7 +19,7 @@ class AccountCreatePage{
     registerGetQuestion() {
         cy.get('#mat-select-value-1').click();
         cy.get('#mat-option-4').click();
-        cy.get('#securityAnswerControl').type('user.city'); //чому не можна вивести з файлу юзер
+        cy.get('#securityAnswerControl').type('user.city');
     }
 
     registerGetSubmitRegistrationFormButton() {
@@ -34,7 +34,7 @@ class AccountCreatePage{
         this.registerGetPasswordConfirmField().type(user.password)
         this.registerGetQuestion();
         this.registerGetSubmitRegistrationFormButton();
-        
+
     }
 
 

@@ -1,0 +1,7 @@
+class FeedbackPage{
+    feedbackVisit() {
+        cy.visit('/#/contact');
+        cy.get('[aria-label="Close Welcome Banner"]').click();
+    }
+}
+export default new FeedbackPage();

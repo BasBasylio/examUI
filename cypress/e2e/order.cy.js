@@ -8,20 +8,17 @@ user.password = faker.internet.password({ length: 8, prefix: '!Qq1' });
 user.country = faker.location.country();
 user.name = faker.person.firstName();
 user.mobileNumber = faker.number.bigInt({ min: 10000000, max: 99999999 }).toString()
-user.zipCode = faker.location.zipCode();
+user.zipCode = faker.number.bigInt({ min: 10000, max: 99999 }).toString()
 user.address = faker.location.streetAddress();
 user.city = faker.location.city();
 user.state = faker.location.state();
 user.cardNumber = faker.finance.creditCardNumber('################');
 
-describe('order with new user', () => {
-  it.only('ok', () => {
+  it('correct order', () => {
     
     accountCreatePage.registerUserWithValidCredentials(user);
   
     accountLoginPage.loginAccount(user);
-
-    cy.get('.ng-star-inserted').should('contain', 'All Products');
 
       cy.get('.ng-star-inserted').should('contain', 'All Products')
       cy.get('.mat-grid-tile.ng-star-inserted').first().find('button').click();
@@ -93,22 +90,15 @@ describe('order with new user', () => {
  
     })
 
-    it('more then 5 items', () => {
+ it('try to order more then 5 items', () => {
+
+  user.email = faker.internet.email();
+  user.password = faker.internet.password({ length: 8, prefix: '!Qq1' });
     
-        accountCreatePage.registerVisit()
-  
-        accountCreatePage.registerGetEmailField().type(user.email)
-        accountCreatePage.registerGetPasswordField().type(user.password + user.passwordPref)
-        accountCreatePage.registerGetPasswordConfirmField().type(user.password + user.passwordPref)
-        accountCreatePage.registerGetQuestion();
-        accountCreatePage.registerGetSubmitRegistrationFormButton();
+        accountCreatePage.registerUserWithValidCredentials(user);
+        accountLoginPage.loginAccount(user);
      
-          cy.get('#email').type(user.email);
-          cy.get('#password').type(user.password + user.passwordPref);
-          cy.get('#loginButton').click();
-          cy.get('.ng-star-inserted').should('contain', 'All Products')
-     
-          cy.get('body > app-root > div > mat-sidenav-container > mat-sidenav-content > app-search-result > div > div > div.ng-star-inserted > mat-grid-list > div > mat-grid-tile:nth-child(1) > div > mat-card > div:nth-child(2) > button').click();
+          cy.get('.mat-grid-tile.ng-star-inserted').first().find('button').click();
           cy.contains('.mat-button-wrapper', ' Your Basket').click();
 
           for(let i=0; i<6; i++){ 
@@ -119,5 +109,4 @@ describe('order with new user', () => {
     
          
         })
-})
- 
+
