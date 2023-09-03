@@ -14,7 +14,7 @@ user.password = faker.internet.password({ length: 8, prefix: '!Qq1'});
  
   })
 
-  it('login with wrong email', () => {
+  it('login with wrong email ', () => {
     accountLoginPage.loginVisit();
     accountLoginPage.loginEmail().type(user.email[0]);
     accountLoginPage.loginPass().type(user.password);
