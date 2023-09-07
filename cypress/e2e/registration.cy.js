@@ -36,6 +36,6 @@ user.password = faker.internet.password({ length: 8, prefix: '!Qq1' });
     accountCreatePage.registerGetPasswordConfirmField().type(user.password);
 
     cy.get('.mat-error.ng-tns-c119-8.ng-star-inserted').should('contain', 'Password must be 5-40 characters long. ');
-
+    cy.log('ok')
   })
 
