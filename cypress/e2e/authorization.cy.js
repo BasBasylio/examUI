@@ -11,7 +11,7 @@ user.password = faker.internet.password({ length: 8, prefix: '!Qq1'});
     accountCreatePage.registerUserWithValidCredentials(user);
 
     accountLoginPage.loginAccount(user);
- 
+     
   })
 
   it('login with wrong email ', () => {
@@ -28,4 +28,5 @@ user.password = faker.internet.password({ length: 8, prefix: '!Qq1'});
     accountLoginPage.loginPass().type(user.password[0]);
     accountLoginPage.loginButton();
     cy.get('[class="error ng-star-inserted"]').should('contain', 'Invalid email or password.');
+    cy.log('ok')
   })

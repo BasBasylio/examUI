@@ -12,7 +12,7 @@ it.only('no comment', () => {
     cy.get('#comment').click()
     cy.get('#captchaControl').click()
     cy.get('#mat-error-0').should('contain', 'Please provide a comment. ');
-     
+    
   })
 
   it.only('no captcha', () => {  
@@ -22,5 +22,5 @@ it.only('no comment', () => {
     cy.get('#comment').click()
    
     cy.get('#mat-error-1').should('contain', 'Please enter the result of the CAPTCHA. ');
-     
+    cy.log('ok')
   })

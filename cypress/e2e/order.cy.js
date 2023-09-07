@@ -107,6 +107,6 @@ user.cardNumber = faker.finance.creditCardNumber('################');
 
           cy.get('.mat-simple-snack-bar-content').should('contain','You can order only up to 5 items of this product.');
     
-         
+          cy.log('ok')
         })
 
